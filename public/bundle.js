@@ -131,17 +131,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var fightNames = ["Argyle Socks", "The Banshee", "The Baby Puncher", "Lights Out", "Thunder", "Bonecrusher", "The Atomic Bull"];
 
 var Home = function Home(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
-      firstName = _useState2[0],
-      setFirstName = _useState2[1];
+      fightName = _useState2[0],
+      setFightName = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      lastName = _useState4[0],
-      setLastName = _useState4[1];
+      firstName = _useState4[0],
+      setFirstName = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      lastName = _useState6[0],
+      setLastName = _useState6[1];
+
+  var getRandomInt = function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
+
+  var handleSubmit = function handleSubmit(evt) {
+    evt.preventDefault();
+    setFightName("".concat(firstName, " \"").concat(fightNames[getRandomInt(7)], "\" ").concat(lastName));
+  };
 
   var handleChangeFirst = function handleChangeFirst(evt) {
     setFirstName(evt.target.value);
@@ -149,10 +164,13 @@ var Home = function Home(props) {
 
   var handleChangeSecond = function handleChangeSecond(evt) {
     setLastName(evt.target.value);
-  };
+  }; // console.log(firstName, lastName)
+  // console.log(fightName)
 
-  console.log(firstName, lastName);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styledComponents_styledHome__WEBPACK_IMPORTED_MODULE_1__["HomeDiv"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "You've decided to enter the world of professional mixed martial arts..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "But you'll need a good nickname before you enter."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styledComponents_styledHome__WEBPACK_IMPORTED_MODULE_1__["RandomizeForm"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styledComponents_styledHome__WEBPACK_IMPORTED_MODULE_1__["HomeDiv"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "You've decided to enter the world of professional mixed martial arts..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "But you'll need a good nickname before you enter."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styledComponents_styledHome__WEBPACK_IMPORTED_MODULE_1__["RandomizeForm"], {
+    onSubmit: handleSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     "for": "fname"
   }, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
@@ -168,7 +186,9 @@ var Home = function Home(props) {
     name: "lname",
     value: lastName,
     onChange: handleChangeSecond
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Randomize me a nickname!")));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit"
+  }, "Randomize me a nickname!")), fightName !== '' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, fightName) : '');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
